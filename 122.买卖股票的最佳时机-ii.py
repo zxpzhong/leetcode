@@ -51,6 +51,19 @@ class Solution(object):
         :type prices: List[int]
         :rtype: int
         """
+        # 计算差值序列，大于0则连买，小于0则断买
+        final_ans = 0
+        for i in range(1,len(prices)):
+            # 今天挣的
+            get_today = prices[i]-prices[i-1]
+            # 决定是否累加
+            if get_today > 0:
+                # 累加
+                final_ans += get_today
+        return final_ans
+            
         
 # @lc code=end
-
+s = [7,1,5,3,6,4]
+solu = Solution()
+print(solu.maxProfit(s))
