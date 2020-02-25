@@ -30,12 +30,42 @@
 #
 
 # @lc code=start
+
+import math
 class Solution(object):
+    
     def numSquares(self, n):
         """
         :type n: int
         :rtype: int
         """
+        # BFS
+    #     return self.get_one([n],0)
+
+    # def get_one(self,n_list,time):
         
+    #     for item in n_list:
+    #         if (math.sqrt(item)) == int(math.sqrt(item)):
+    #             return time+1
+    #     new_list = []
+    #     for item in n_list:
+    #         i = 1
+    #         while i**2 < item:
+    #             new_list.append(item-i**2)
+    #             i+=1
+    #     return self.get_one(new_list,time+1)
+
+
+        # 动归解法
+        dp=[i for i in range(n+1)]
+        for i in range(2,n+1):
+            for j in range(1,int(i**(0.5))+1):
+                # i = j*j这一个完全平方数+(i-j*j)的最小组成
+                # 遍历j取最小个数
+                dp[i]=min(dp[i],dp[i-j*j]+1)
+        return dp[-1]
+
 # @lc code=end
 
+solu = Solution()
+print(solu.numSquares(11))
