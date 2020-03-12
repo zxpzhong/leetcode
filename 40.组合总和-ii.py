@@ -55,27 +55,41 @@ class Solution(object):
         :type target: int
         :rtype: List[List[int]]
         """
-        # 排序
+        min_val = min(candidates)
+        max_val = min(candidates)
         candidates.sort()
-        # 快慢指针
-        fast_pt = 0
-        slow_pt = 0
-        length = len(candidates)
-        ans = []
-        while fast_pt < length and slow_pt < length:
-            current_sum = sum(candidates[slow_pt:fast_pt])
-            if current_sum == target:
-                # 满足条件
-                ans.append(candidates[slow_pt:fast_pt])
-            elif current_sum > target:
-                slow_pt+=1
-                fast_pt=slow_pt
+        for i in range(len(candidates)):
+            if candidates[i] > target:
+                break
+        candidates = candidates[:i+1]
+
+        # 回溯
+        self.candidates = candidates
+        self.ans = []
+        self.cut_one(target,[],candidates)
+        self.ans.sort()
+        if len(self.ans) == 0:
+            return []
+        self.new_ans = []
+        self.new_ans.append(self.ans[0])
+        pre_val = self.ans[0]
+        for i in range(1,len(self.ans)):
+            if not self.ans[i] == pre_val:
+                self.new_ans.append(self.ans[i])
+            pre_val = self.ans[i]
+        return self.new_ans
+
+    def cut_one(self,res,candi,candidates):
+        for i,item in enumerate(candidates):
+            if item == res:
+                self.ans.append(candi+[item])
+            elif item < res:
+                self.cut_one(res-item,candi+[item],candidates[i+1:])
             else:
-                fast_pt+=1
-        return ans 
+                return
         
 # @lc code=end
-candidates = [10,1,2,7,6,1,5]
-target = 8
+candidates = [2]
+target = 1
 solu = Solution()
-solu.combinationSum2(candidates,target)
+print(solu.combinationSum2(candidates,target))

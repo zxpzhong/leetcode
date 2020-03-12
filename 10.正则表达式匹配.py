@@ -81,6 +81,26 @@ class Solution(object):
         :type p: str
         :rtype: bool
         """
+        # 回溯
+
+    # 先写回溯函数：每次匹配掉一个字符
+    def matchone(self,s,p):
+        # 如果直接相等，那肯定没得洗，直接过
+        if s[0] == p[0]:
+            self.matchone(s[1:],p[1:])
+        elif p[0] == '.':
+            # 如果已经到了最后一个字符：
+            if len(s) == 1 and len(p) == 1:
+                # 匹配完毕
+                return True
+            elif p[1] = '*':
+                # 那么匹配到的下一个
+                for t in range(1,len(s)):
+                    self.matchone(s[t:],p)
+        elif p[0] == '*':
+            # 前面的字符可以使用任意多次
+
+
         
         
 # @lc code=end
