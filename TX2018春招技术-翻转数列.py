@@ -12,3 +12,4 @@
 import sys
 n = list(map(int,sys.stdin.readline().strip().split()))
 n,m = n[0],n[1]
+# 做过了忘记记答案下来！！！！
