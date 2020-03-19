@@ -37,6 +37,25 @@ class Solution(object):
         :type t: str
         :rtype: str
         """
+        stack = {}
+        for i in range(len(t)):
+            stack[t[i]] = 0
+        l = 0
+        r = 0
+        ans = ''
+        while r < len(s):
+            if min(stack.values()) == 0: 
+                if s[r] in t:
+                    stack[s[r]]+=1
+                r+=1
+            # 如果已经全部集齐，则l开始移动
+            else:
+                if r-l+1 < len(ans):
+                    ans = s[l:r+1]
+                l+=1
+                if s[l] in t:
+                    stack[s[r]]-=1
+                
         
 # @lc code=end
 

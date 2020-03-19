@@ -12,3 +12,18 @@
 共q行，每行一个整数，表示妞妞询问的区间和。
 '''
 
+
+import sys
+
+texts = []
+q = sys.stdin.readline().strip()
+for line in sys.stdin:
+    if not line:
+        break
+    l,r = list(map(int,line.strip().split()))
+    # 读取到左区间l和右区间r
+    # 区间为左闭右闭
+    temp1 = (r-l+1)//2*(1 if l%2 == 1 else -1)
+    temp2 = (r*(1 if r%2 == 0 else -1) if (r-l+1) % 2 == 1 else 0)
+    ans = temp1 + temp2
+    print(ans)

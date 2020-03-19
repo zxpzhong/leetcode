@@ -35,15 +35,19 @@ class Solution(object):
         :type matrix: List[List[str]]
         :rtype: int
         """
-        def 
         row = len(matrix)
         column = len(matrix[0])
 
-        # 遍历
-        for i in range(row):
-            for j in range(column):
-                # 以ij为顶点的最大矩形面积是多少
+        # 太菜了老弟！！！
 
         
+        
 # @lc code=end
-
+matrix = [
+  ["1","0","1","0","0"],
+  ["1","0","1","1","1"],
+  ["1","1","1","1","1"],
+  ["1","0","0","1","0"]
+]
+solu = Solution()
+print(solu.maximalRectangle(matrix))

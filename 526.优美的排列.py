@@ -55,5 +55,22 @@ class Solution(object):
         :rtype: int
         """
         
+        nums = [i+1 for i in range(N)]
+        self.ans = 0
+        # 向nums中逐一填入数字
+        self.addone(1,nums)
+        return self.ans
+
+    def addone(self,i,candi):
+        if len(candi) == 0:
+            self.ans+=1
+        for j in range(len(candi)):
+            if candi[j]%i == 0 or i%candi[j] == 0:
+                # 如果满足条件
+                self.addone(i+1,candi[:j]+candi[j+1:])
+
+
 # @lc code=end
 
+solu = Solution()
+print(solu.countArrangement(2))

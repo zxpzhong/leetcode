@@ -40,16 +40,18 @@
 #
 
 # @lc code=start
+import functools
 class Solution(object):
     def numDecodings(self, s):
         """
         :type s: str
         :rtype: int
         """
-    #     # 给定一个字符串，把该字符串拆分成多个部分，其中每个部分的值在1-26之间
+        # 给定一个字符串，把该字符串拆分成多个部分，其中每个部分的值在1-26之间
     #     self.ans = 0
     #     self.split_one(s)
     #     return self.ans
+    # # @functools.lru_cache()
     # def split_one(self,cur_str):
     #     length = len(cur_str)
     #     if length == 0:
@@ -64,23 +66,44 @@ class Solution(object):
     #     # 如果第一位等于0或者是前两位不小于26，则不会继续分解
 
 
-        # 无脑递归超时
-        length = len(s)
-        # 上次结果
-        pre = 1
-        # 当前结果
-        cur = 1
-        if s[0] == '0':
-            return 0
+    # 尝试加入LRU cache来让原来超时的解法通过
+        self.ans = 0
+        self.split_one(s)
+        return self.split_one(s)
+    @functools.lru_cache()
+    def split_one(self,cur_str):
+        length = len(cur_str)
         ans = 0
-        for i in range(1,length):
-            temp = cur * (1 if not s[i] == '0' else 0) + pre * (1 if 9<int(s[i-1:i+1]) <= 26 else 0)
-            pre = cur
-            cur = temp
-        return cur
+        if length == 0:
+            # 分解完毕
+            # self.ans+=1
+            return 1
+        if not cur_str[0] == '0':
+            ans+=self.split_one(cur_str[1:])
+            if length >= 2 and int(cur_str[:2]) <= 26:
+                # 两位也可以拿出来解释
+                ans+=self.split_one(cur_str[2:])
+        return ans
+        # 如果第一位等于0或者是前两位不小于26，则不会继续分解
+
+
+        # # 无脑递归超时
+        # length = len(s)
+        # # 上次结果
+        # pre = 1
+        # # 当前结果
+        # cur = 1
+        # if s[0] == '0':
+        #     return 0
+        # ans = 0
+        # for i in range(1,length):
+        #     temp = cur * (1 if not s[i] == '0' else 0) + pre * (1 if 9<int(s[i-1:i+1]) <= 26 else 0)
+        #     pre = cur
+        #     cur = temp
+        # return cur
 
 
 # @lc code=end
 
 solu = Solution()
-print(solu.numDecodings('123'))
+print(solu.numDecodings('226'))

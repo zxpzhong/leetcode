@@ -62,6 +62,8 @@
 
 # @lc code=start
 # from typing import List 
+# from functools import lru_cache
+import functools
 from collections import deque
 class Solution(object):
     def wordBreak(self, s, wordDict):
@@ -84,7 +86,7 @@ class Solution(object):
     #     for i in range(1,length+1):
     #         if s[:i] in self.wordDict:
     #             self.cutone(s[i:],candi + ' '+s[:i])
-        # 递归超时
+    #     # 递归超时
     #     self.length = len(s)
     #     self.ans = []
     #     self.dp = [ [] for _ in range(len(s))]
@@ -99,6 +101,10 @@ class Solution(object):
     #     # for i in range(len(self.ans)):
     #         # self.ans[i] = self.ans[i][1:]
     #     return self.ans
+    
+    # # @lru_cache()
+    # @functools.lru_cache()
+    # # LRU使用本机通过，leetcode报错
     # def cutone(self,cur,count,candi):
     #     if count == self.length:
     #         self.ans.append(candi)

@@ -1,0 +1,1 @@
+n = list(map(int,sys.stdin.readline().strip().split()))[0]

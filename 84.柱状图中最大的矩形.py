@@ -45,6 +45,6 @@ class Solution(object):
         :type heights: List[int]
         :rtype: int
         """
-        
+        # 
 # @lc code=end
 

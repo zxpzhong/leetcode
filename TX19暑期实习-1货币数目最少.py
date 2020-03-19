@@ -14,5 +14,16 @@
 57
 3 // 输出:
 4
+
+https://www.acwing.com/problem/content/569/
 '''
 
+
+import sys
+n = list(map(int,sys.stdin.readline().strip().split()))
+n,m = n[0],n[1]
+# n为最大面额，m为商品价格
+# 每种货币拥有无限个！！！
+# 贪心算法：大面额的永远有最多个
+ans = m//n
+print(ans if m%n == 0 else ans+1)
