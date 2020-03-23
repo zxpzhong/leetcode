@@ -17,9 +17,8 @@ s = sys.stdin.readline().strip()
 
 # 链接：https://www.nowcoder.com/questionTerminal/2f45f0ef94724e06a4173c91ef60781c
 # 来源：牛客网
-
 import sys
-t1, t2 = list(map(int, input().split()))
+t1, t2 = list(map(int, sys.stdin.readline().strip().split()))
 task = [0] * 32
 if t1 in range(1, 1025) and t2 in range(1, 1025):
     index1 = int((t1-1)/32)

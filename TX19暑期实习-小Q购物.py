@@ -63,6 +63,7 @@ https://www.acwing.com/problem/content/603/
 
 
 import sys
+import math
 m,n = list(map(int,sys.stdin.readline().strip().split()))
 money = []
 for line in sys.stdin:
@@ -70,19 +71,20 @@ for line in sys.stdin:
 if not money[0] == 1:
     print(-1)
     exit()
-
-area = 0
-pt = 1
-ans = 0
-money_pt = 0
-while pt <= m:
-    # 组合出1,2,3,4...m
-    if pt in money:
-        # 如果money中有pt这个数，那么肯定使用这个数
-        ans+=1
-        area += pt
-    # else:
-        # pt不在money中了，需要额外加旧硬币组合
-        # pt += 
-        
-print(ans)
+money.sort()
+# money中大于的去除
+for i in range(len(money)):
+    if money[i] > m:
+        break
+money = money[:i+1]
+# 最后要凑m-1，所以在最后添加一枚虚拟硬币，这样处理起来代码简单
+money.append(m+1)
+# 当前余额
+S = 1
+count = 1
+for i in range(len(money)-1):
+    # 要凑money[i]元
+    temp = math.ceil((money[i+1]-1-S)/money[i])
+    S+= temp * money[i]
+    count += temp
+print(count)

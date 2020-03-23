@@ -9,7 +9,11 @@
 8 2
 8
 '''
+
 import sys
-n,m = list(map(int,sys.stdin.readline().strip().split()))
+n = list(map(int,sys.stdin.readline().strip().split()))[0]
+a = list(map(int,sys.stdin.readline().strip().split()))
 # 做过了忘记记答案下来！！！！
-print(int(n*m/2))
+a.sort()
+a = a[::-1]
+print(sum(a[::2])-sum(a[1::2]))

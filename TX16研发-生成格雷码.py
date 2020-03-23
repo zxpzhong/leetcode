@@ -78,5 +78,24 @@
 #         return new_ans
 
 
+class GrayCode:
+    def getGray(self, n):
+        # 定义初始1位格雷码
+        base = ['0','1']
+        for i in range(n-1):
+            add_0 = []
+            add_1 = []
+            # 左侧补0
+            for item in base:
+                add_0.append('0'+item)
+            # 左侧补1
+            for item in base:
+                add_1.append('1'+item)
+            # 颠倒
+            add_1 = add_1[::-1]
+            base = add_0+add_1
+        return base
+
+        
 solu = GrayCode()
 print(solu.getGray(8))
