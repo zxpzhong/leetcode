@@ -14,17 +14,33 @@
 输出
 1| 6
 '''
-import sys
-# n:卡片数  s：得分
-n,s = list(map(int,sys.stdin.readline().strip().split()))
-# 牛妹卡片
-card = list(map(int,sys.stdin.readline().strip().split()))
-# n轮中，赢得s轮，也就是从card中挑出s个赢，剩下输的每一个有两个选择
+
+n,s = list(map(int , input() .split()))
+nums = list(map(int , input(). split()))
 
 import math
-# print(int((math.factorial(n)/(math.factorial(s)*math.factorial(n-s)))*(2**(n-s)))%(10**9+7))
-temp = 1
-for i in range(n-s+1,n+1):
-    temp*=i
-print(int((temp/(math.factorial(s)))*(2**(n-s)))%(10**9+7))
+print(((math.factorial(n)//(math.factorial(s)*math.factorial(n-s)))*(2**(n-s)))%(10**9+7))
+
+
+# def F(n,s ,nums):
+#     # 如果要全选当然只有1种选择了
+#     if s==n:
+#         return 1
+#     # 
+#     res=1
+#     tempt = n
+#     # res = n*(n-1)*....*(n-s)
+#     for _ in range(n-s):
+#         res *= tempt
+#         tempt -= 1
+#     # res = res//(n-s)//(n-s-1)....//(1)
+#     x=n-s
+#     for _ in range(n-s):
+#         res //= x
+#         x -= 1
+    
+#     return res*(2**(n-s))
+# print(int(F(n,s, nums)%(10**9+7)))
+
+
 

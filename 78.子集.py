@@ -43,19 +43,20 @@ class Solution(object):
         """
         self.ans = []
         # candi = [i for i in range(1,n+1)]
-        for k in range(len(nums)+1):
-            self.add_one([],nums,0,k)
+        self.candi = nums
+        for k in range(1,len(nums)+1):
+            self.add_one([],0,k,1)
         return self.ans
 
-    def add_one(self,curlist,candi,pt,k):
+    def add_one(self,curlist,pt,k,len_cur):
         # 退出条件
         if len(curlist) == k:
             self.ans.append(curlist)
             return
-        for i in range(pt,len(candi)):
-            self.add_one(curlist+[candi[i]],candi,i+1,k)
+        for i in range(pt,len(self.candi)):
+            self.add_one(curlist+[self.candi[i]],i+1,k,len_cur+1)
           
 # @lc code=end
-nums = [1,2,3]
+nums = [1,2,3,4]
 solu = Solution()
 print(solu.subsets(nums))
